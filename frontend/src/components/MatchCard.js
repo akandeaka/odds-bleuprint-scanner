@@ -2,14 +2,8 @@ import React from "react";
 
 function MatchCard({ match }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        margin: "10px 0",
-        padding: "10px",
-        borderRadius: "6px"
-      }}
-    >
+    <div className="match-card">
+
       <h3>{match.match}</h3>
       <p>
         <strong>Home:</strong> {match.home} &nbsp;
