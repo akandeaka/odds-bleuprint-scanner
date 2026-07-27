@@ -1,7 +1,8 @@
-# Placeholder for database models
-# Later you can add SQLAlchemy models for storing fixtures, odds history, and user preferences.
+# Placeholder for future database models (e.g., SQLAlchemy)
 
 class Fixture:
-    def __init__(self, name, odds):
+    def __init__(self, name, home, draw, away):
         self.name = name
-        self.odds = odds
+        self.home = home
+        self.draw = draw
+        self.away = away
