@@ -1,14 +1,18 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
+import json
 from scanner import scan_fixtures
 
 app = Flask(__name__)
 
-@app.route("/scan-fixtures", methods=["POST"])
+@app.route("/scan-fixtures", methods=["GET"])
 def scan():
-    data = request.json
+    # Load automatically fetched fixtures
+    with open("fixtures.json") as f:
+        data = json.load(f)
+
     fixtures = data.get("fixtures", [])
-    season_stage = data.get("season_stage", "start")
-    league_type = data.get("league_type", "popular")
+    season_stage = "start"      # default for Europe
+    league_type = "popular"     # default for Europe
 
     results = scan_fixtures(fixtures, season_stage, league_type)
     return jsonify(results)
