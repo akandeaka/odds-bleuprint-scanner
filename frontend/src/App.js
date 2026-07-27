@@ -18,7 +18,8 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="app-container">
+
       <h1>Odds Blueprint Scanner (Europe / Bet365)</h1>
       {matches.length === 0 && <p>No matches found for today.</p>}
       {matches.map((match, index) => (
