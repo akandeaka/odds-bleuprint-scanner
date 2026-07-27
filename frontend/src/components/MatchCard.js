@@ -1,9 +1,9 @@
 import React from "react";
+import "./MatchCard.css";
 
 function MatchCard({ match }) {
   return (
     <div className="match-card">
-
       <h3>{match.match}</h3>
       <p>
         <strong>Home:</strong> {match.home} &nbsp;
