@@ -1,30 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import MatchCard from "./components/MatchCard";
+import { fetchScannedFixtures } from "./services/api";
+import "./App.css";
 
-function MatchCard({ match }) {
+function App() {
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    async function loadMatches() {
+      try {
+        const data = await fetchScannedFixtures();
+        setMatches(data);
+      } catch (err) {
+        console.error("Failed to load matches", err);
+      }
+    }
+    loadMatches();
+  }, []);
+
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        margin: "10px 0",
-        padding: "10px",
-        borderRadius: "6px"
-      }}
-    >
-      <h3>{match.match}</h3>
-      <p>
-        <strong>Home:</strong> {match.home} &nbsp;
-        <strong>Draw:</strong> {match.draw} &nbsp;
-        <strong>Away:</strong> {match.away}
-      </p>
-      <p>
-        <strong>Prediction:</strong> {match.prediction}
-      </p>
-      <p>
-        <strong>Season Stage:</strong> {match.season_stage} &nbsp;
-        <strong>League Type:</strong> {match.league_type}
-      </p>
+    <div className="app-container">
+      <h1>Odds Blueprint Scanner (Europe / Bet365)</h1>
+      {matches.length === 0 && <p>No matches found for today.</p>}
+      {matches.map((match, index) => (
+        <MatchCard key={index} match={match} />
+      ))}
     </div>
   );
 }
 
-export default MatchCard;
+export default App;
