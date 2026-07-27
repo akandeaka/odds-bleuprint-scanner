@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MatchCard from "./components/MatchCard";
 import { fetchScannedFixtures } from "./services/api";
+import "./App.css";
 
 function App() {
   const [matches, setMatches] = useState([]);
@@ -19,7 +20,6 @@ function App() {
 
   return (
     <div className="app-container">
-
       <h1>Odds Blueprint Scanner (Europe / Bet365)</h1>
       {matches.length === 0 && <p>No matches found for today.</p>}
       {matches.map((match, index) => (
