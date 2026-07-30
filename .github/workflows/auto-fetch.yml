@@ -5,6 +5,9 @@ on:
     - cron: "0 0 * * *"   # runs every midnight
   workflow_dispatch:       # manual trigger if needed
 
+permissions:
+  contents: write   # <-- add this line
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
